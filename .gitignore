@@ -32,3 +32,7 @@
 CMakeCache.txt
 CMakeFiles/
 Makefile
+
+*.cbp
+*.user
+*.user*

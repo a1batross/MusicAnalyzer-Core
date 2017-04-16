@@ -30,14 +30,22 @@ set (MUSICANALYZER_CORE ma_core)
 
 find_package(Essentia REQUIRED)
 
-set(MUSICANALYZER_CORE_SRC lol.cpp)
-include_directories (.)
+set(MUSICANALYZER_CORE_SRC
+	streaming_extractor_music.cpp
+	extractor_music/MusicExtractor.cpp
+	extractor_music/MusicRhythmDescriptors.cpp
+	extractor_music/MusicTonalDescriptors.cpp
+	extractor_music/MusicLowlevelDescriptors.cpp
+	)
+include_directories (. extractor_music/ ${ESSENTIA_INCLUDE_DIRS})
 
 if(ANDROID)
 	add_library(${MUSICANALYZER_CORE} SHARED ${MUSICANALYZER_CORE_SRC})
 else()
 	add_executable(${MUSICANALYZER_CORE} ${MUSICANALYZER_CORE_SRC})
 endif()
+
+target_link_libraries(${MUSICANALYZER_CORE} ${ESSENTIA_LIBRARIES})
 
 set_target_properties (${MUSICANALYZER_CORE} PROPERTIES
 	POSITION_INDEPENDENT_CODE 1)
