@@ -45,6 +45,10 @@ else()
 	add_executable(${MUSICANALYZER_CORE} ${MUSICANALYZER_CORE_SRC})
 endif()
 
+if(CMAKE_COMPILER_IS_GNUCC)
+	add_compile_options(-Wl,--no-undefined)
+endif()
+
 target_link_libraries(${MUSICANALYZER_CORE} ${ESSENTIA_LIBRARIES})
 
 set_target_properties (${MUSICANALYZER_CORE} PROPERTIES

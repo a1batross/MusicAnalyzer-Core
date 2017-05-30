@@ -86,7 +86,7 @@ def configure(conf):
     conf.env.APP_VERSION = VERSION
 
     # compiler flags
-    conf.env.CXXFLAGS += [ '-Wall', '-fno-strict-aliasing', '-fPIC', '-fvisibility=hidden' ]
+    conf.env.CXXFLAGS += [ '-Wall', '-fno-strict-aliasing', '-fPIC', '-fvisibility=default' ]
 
     # define this to be stricter, but sometimes some libraries can give problems...
     #conf.env.CXXFLAGS += [ '-Werror' ]
@@ -149,6 +149,8 @@ def configure(conf):
         conf.env.CXXFLAGS += [ '-I/usr/local/include' ]
 
     conf.load('compiler_cxx compiler_c qt4')
+
+    conf.env['LINKFLAGS'] += [ '-Wl,--no-undefined' ]
 
     #conf.env['LINKFLAGS'] += [ '--as-needed' ] # TODO do we need this flag?
 

@@ -17,13 +17,14 @@ cd tmp
 
 unzip -x ../gaia-master.zip
 
-cp ../wafpatch/waf gaia-master/waf
-cp ../wafpatch/wscript gaia-master/wscript
 
+cp ../wafpatch/waf          gaia-master/waf
+cp ../wafpatch/wscript      gaia-master/wscript
+cp ../wafpatch/src/wscript  gaia-master/src/wscript
 cd gaia-master
 
-./waf configure --prefix=$PREFIX -v
-./waf -v
+./waf configure --prefix=$PREFIX -v --with-stlfacade
+./waf -v -j5
 ./waf install 
 
 cd ../..
