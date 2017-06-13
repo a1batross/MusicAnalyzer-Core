@@ -112,7 +112,9 @@ FFTW_FLAGS=" ${HOST_ARG}
 
 LIBSAMPLERATE_FLAGS=" ${HOST_ARG}
     --disable-fftw \
-    --disable-sndfile 
+    --disable-sndfile \
+    --disable-shared \
+    --enable-static
 "
 
 export CROSS_COMPILE=arm-linux-androideabi

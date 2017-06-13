@@ -15,10 +15,10 @@ tar -xf ../$LIBYAML_VERSION.tar.gz
 cd $LIBYAML_VERSION
 
 # fails to compile shared library, building only static
-CFLAGS+="-DYAML_DECLARE_STATIC"
+CFLAGS += "-DYAML_DECLARE_STATIC"
 ./configure \
     --prefix=$PREFIX \
-    $SHARED_OR_STATIC $HOST_ARG
+    --enable-static --disable-shared $HOST_ARG
 make
 make install
 

@@ -16,8 +16,7 @@ cp ../../libav.config.sub   Cfg/config.sub
 cp ../../libav.config.guess Cfg/config.guess
 ./configure \
     --prefix=$PREFIX \
-    $LIBSAMPLERATE_FLAGS \
-    $SHARED_OR_STATIC
+    $LIBSAMPLERATE_FLAGS
 make
 make install
 

@@ -15,7 +15,7 @@ cd $TAGLIB_VERSION/
 cmake \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
-    -DENABLE_STATIC=OFF \
+    -DENABLE_STATIC=ON \
 	. 
 make
 make install
