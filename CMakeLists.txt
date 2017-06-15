@@ -29,15 +29,19 @@ project (MUSICANALYZER_CORE)
 set (MUSICANALYZER_CORE ma_core)
 
 find_package(Essentia REQUIRED)
+find_package(Gaia REQUIRED)
 
 set(MUSICANALYZER_CORE_SRC
-	streaming_extractor_music.cpp
+	main.cpp
+	platform/android_jni.cpp
+	platform/default.cpp
+	# streaming_extractor_music.cpp
 	extractor_music/MusicExtractor.cpp
 	extractor_music/MusicRhythmDescriptors.cpp
 	extractor_music/MusicTonalDescriptors.cpp
 	extractor_music/MusicLowlevelDescriptors.cpp
 	)
-include_directories (. extractor_music/ ${ESSENTIA_INCLUDE_DIRS})
+include_directories (. extractor_music/ ${ESSENTIA_INCLUDE_DIRS} ${GAIA_INCLUDE_DIRS})
 
 if(ANDROID)
 	add_library(${MUSICANALYZER_CORE} SHARED ${MUSICANALYZER_CORE_SRC})
@@ -45,11 +49,11 @@ else()
 	add_executable(${MUSICANALYZER_CORE} ${MUSICANALYZER_CORE_SRC})
 endif()
 
-if(CMAKE_COMPILER_IS_GNUCC)
-	add_compile_options(-Wl,--no-undefined)
-endif()
+set(CMAKE_CXX_STANDARD 03)
 
-target_link_libraries(${MUSICANALYZER_CORE} ${ESSENTIA_LIBRARIES})
+add_compile_options(-Wl,--no-undefined)
+
+target_link_libraries(${MUSICANALYZER_CORE} ${ESSENTIA_LIBRARIES} ${GAIA_LIBRARIES})
 
 set_target_properties (${MUSICANALYZER_CORE} PROPERTIES
 	POSITION_INDEPENDENT_CODE 1)
