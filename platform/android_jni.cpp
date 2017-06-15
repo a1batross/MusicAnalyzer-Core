@@ -7,7 +7,7 @@
 #define DECLARE_JNI_INTERFACE( ret, name, ... ) \
 		JNIEXPORT ret JNICALL Java_ru_mtuci_musicanalyzer_CoreLib_##name( JNIEnv *env, jclass clazz, __VA_ARGS__ )
 
-std::string GetStdStringFromJString( JNIEnv *env, jstring str )
+std::string GetStdStringFromJString( JNIEnv *env, jstring jstr )
 {
 	if( !jstr ) return "";
 
@@ -20,7 +20,7 @@ std::string GetStdStringFromJString( JNIEnv *env, jstring str )
 		v.push_back( (char) arr[i] );
 	}
 
-	env->ReleaseStringChars( jStr, chars );
+	env->ReleaseStringChars( jstr, arr );
 
 	return std::string( v.begin(), v.end() );
 }
